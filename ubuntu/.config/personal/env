@@ -1,0 +1,7 @@
+commitDotFiles() {
+    pushd $DOTFILES
+    git add .
+    git commit -m "updating dotiles"
+    git push origin main 
+    popd
+}
