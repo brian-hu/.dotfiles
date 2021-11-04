@@ -75,7 +75,6 @@ ZSH_THEME="candy"
 plugins=(
     git
     cargo
-    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
