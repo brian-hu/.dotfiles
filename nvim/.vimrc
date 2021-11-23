@@ -61,6 +61,15 @@ if has("autocmd")
 
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=4 shiftwidth=4 softtabstop=0 noexpandtab
+    
+    " Use tabstop of 2 in HTML
+    autocmd FileType html set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+    " Use tabstop of 2 in XML
+    autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+    " Use tabstop of 2 in C++
+    autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 endif
 
 " Whitespace
