@@ -74,7 +74,7 @@ ZSH_THEME="candy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
-    cargo
+    rust 
     zsh-autosuggestions
     zsh-completions
 )
