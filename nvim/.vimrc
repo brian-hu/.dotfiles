@@ -68,8 +68,6 @@ if has("autocmd")
     " Use tabstop of 2 in XML
     autocmd FileType xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
-    " Use tabstop of 2 in C++
-    autocmd FileType cpp set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 endif
 
 " Whitespace

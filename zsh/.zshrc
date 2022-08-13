@@ -77,6 +77,7 @@ plugins=(
     rust 
     zsh-autosuggestions
     zsh-completions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -117,3 +118,20 @@ VIM="nvim"
 alias v=$VIM
 
 export PATH=$PATH:~/.local/bin
+
+mkvenv() {
+    if [ -z "$1" ]
+    then
+        echo "Argument required"
+    else
+        python3 -m venv $HOME/python_envs/$1
+    fi
+}
+venv() {
+    if [ -z "$1" ]
+    then
+        echo "Argument required"
+    else
+        source $HOME/python_envs/$1/bin/activate
+    fi
+}
