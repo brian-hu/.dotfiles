@@ -124,7 +124,15 @@ mkvenv() {
     then
         echo "Argument required"
     else
-        python3 -m venv $HOME/python_envs/$1
+        python3 -m venv $HOME/.python_envs/$1
+    fi
+}
+delvenv() {
+    if [ -z "$1" ]
+    then
+        echo "Argument required"
+    else
+        rm -rf $HOME/.python_envs/$1
     fi
 }
 venv() {
@@ -132,6 +140,6 @@ venv() {
     then
         echo "Argument required"
     else
-        source $HOME/python_envs/$1/bin/activate
+        source $HOME/.python_envs/$1/bin/activate
     fi
 }
