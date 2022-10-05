@@ -1,21 +1,30 @@
 export DOTFILES=$HOME/.dotfiles
 export STOW_FOLDERS="nvim,zsh,ubuntu,tmux"
 
+# ls colors
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
+
 # install zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-mkdir -p "$(dirname $ZINIT_HOME)"
-git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+if [[ ! -a $ZINIT_HOME ]]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
 source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # install theme
+PURE_POWER_MODE=modern
 zinit light romkatv/powerlevel10k
-zinit snippet https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme/everforest-light.zsh
+zinit snippet https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme/sonokai-espresso.zsh
 
 # install plugins
-zinit ice wait lucid; zinit light zdharma-continuum/fast-syntax-highlighting 
-zinit ice wait lucid; zinit light zsh-users/zsh-completions
-zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
-
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zdharma-continuum/fast-syntax-highlighting
+    
 # nvm 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -26,6 +35,7 @@ export NVM_DIR="$HOME/.nvm"
 
 VIM="nvim"
 alias v=$VIM
+alias ls="ls --color=auto"
 
 # wsl commands
 #alias xsvr='/mnt/c/Program\ Files/VcXsrv/vcxsrv.exe :0 -ac -multiwindow -clipboard -nowgl &> /dev/null &'

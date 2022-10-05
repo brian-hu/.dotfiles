@@ -14,11 +14,16 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" UTF-8
+set encoding=utf8
+
 " Plugins with vim-plug
 call plug#begin('~/.vim/plugged')
 
-" Sonokai Theme
+" Themes
 Plug 'sainnhe/sonokai'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/gruvbox-material'
 
 " JSX syntax highlighting
 Plug 'yuezk/vim-js'
@@ -26,7 +31,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 
 " NERD Commenter
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -41,6 +45,12 @@ Plug 'junegunn/fzf.vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Tmuxline
+Plug 'edkolev/tmuxline.vim'
+
+" Vim devicons
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -94,14 +104,33 @@ if has('termguicolors')
     set termguicolors
 endif
 
+" Gruvbox-material settings
+set background=dark
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_better_performance=1
+let g:gruvbox_material_enable_italic=0
+let g:gruvbox_material_disable_italic_comment=1
+
+" Sonokai settings
 let g:sonokai_style='espresso'
+let g:sonokai_better_performance=1
 let g:sonokai_enable_italic=0
 let g:sonokai_disable_italic_comment=1
 
-colorscheme sonokai
+" Everforest
+let g:everforest_background='medium'
+let g:everforest_enable_italic=0
+let g:everforest_disable_italic_comment=1
+
+colorscheme sonokai 
 
 " Airline
 let g:airline_theme = 'sonokai'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tmuxline#enabled = 0
+
+" Nerdfont
+set guifont=Fira\ Code\ Nerd\ Font\ 12
 
 " Open NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR> 
