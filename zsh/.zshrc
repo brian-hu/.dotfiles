@@ -33,9 +33,11 @@ export NVM_DIR="$HOME/.nvm"
 # fzf
 [ -d "/usr/share/doc/fzf/examples" ] && source /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/completion.zsh
 
+# personal 
 VIM="nvim"
 alias v=$VIM
 alias ls="ls --color=auto"
+alias colorscheme="~/.dotfiles/scripts/colorscheme.sh"
 
 # wsl commands
 #alias xsvr='/mnt/c/Program\ Files/VcXsrv/vcxsrv.exe :0 -ac -multiwindow -clipboard -nowgl &> /dev/null &'
