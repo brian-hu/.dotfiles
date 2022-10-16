@@ -18,7 +18,7 @@ autoload -Uz _zinit
 # install theme
 PURE_POWER_MODE=modern
 zinit light romkatv/powerlevel10k
-zinit snippet https://github.com/sainnhe/dotfiles/raw/master/.zsh-theme/sonokai-espresso.zsh
+zinit snippet ~/.zsh-theme/everforest-dark.zsh
 
 # install plugins
 zinit light zsh-users/zsh-autosuggestions
@@ -32,21 +32,30 @@ export NVM_DIR="$HOME/.nvm"
 
 # fzf
 [ -d "/usr/share/doc/fzf/examples" ] && source /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/completion.zsh
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # personal 
 VIM="nvim"
 alias v=$VIM
 alias ls="ls --color=auto"
-alias colorscheme="~/.dotfiles/scripts/colorscheme.sh"
+alias cs="~/.dotfiles/scripts/colorscheme.sh"
 
 # wsl commands
 #alias xsvr='/mnt/c/Program\ Files/VcXsrv/vcxsrv.exe :0 -ac -multiwindow -clipboard -nowgl &> /dev/null &'
 #export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')':0'
 #export COLORTERM=truecolor
 
+# history
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt INC_APPEND_HISTORY_TIME
+
 # path updates
 export PATH=$PATH:~/.local/bin
-export PATH="/home/bhu/.local/share/solana/install/active_release/bin:$PATH"
+[ -f "$HOME/.local/share/solana/install/active_release/bin" ] && export PATH="$PATH:$HOME/.local/share/solana/install/active_release/bin" # solana
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # venv functions
 mkvenv() {
