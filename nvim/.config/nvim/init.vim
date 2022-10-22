@@ -108,7 +108,7 @@ let g:gruvbox_material_enable_italic=0
 let g:gruvbox_material_disable_italic_comment=1
 
 " Sonokai settings
-let g:sonokai_style='espresso'
+let g:sonokai_style='andromeda'
 let g:sonokai_better_performance=1
 let g:sonokai_enable_italic=0
 let g:sonokai_disable_italic_comment=1
@@ -118,10 +118,10 @@ let g:everforest_background='medium'
 let g:everforest_enable_italic=0
 let g:everforest_disable_italic_comment=1
 
-colorscheme everforest
+colorscheme sonokai
 
 " Airline
-let g:airline_theme='everforest'
+let g:airline_theme='sonokai'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tmuxline#enabled=0
 
@@ -144,11 +144,15 @@ nnoremap <C-g> :Rg<Cr>
 " coc.nvim binds
 
 " Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction 
+inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -182,15 +186,14 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-
 " Remap <C-f> and <C-g> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-g> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-g> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-g> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  nnoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-m> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-m> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-n> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-m> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Lua require setup

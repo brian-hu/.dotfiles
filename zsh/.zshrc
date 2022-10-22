@@ -18,7 +18,7 @@ autoload -Uz _zinit
 # install theme
 PURE_POWER_MODE=modern
 zinit light romkatv/powerlevel10k
-zinit snippet ~/.zsh-theme/everforest-dark.zsh
+zinit snippet ~/.zsh-theme/sonokai-andromeda.zsh
 
 # install plugins
 zinit light zsh-users/zsh-autosuggestions
