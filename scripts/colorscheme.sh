@@ -23,12 +23,12 @@ if [ "$THEME"x = ""x ]; then
 fi
 
 _switch_color_scheme() {
-    if [ -f ~/.dotfiles/nvim/.config/nvim/init.vim ]; then
+    if [ -f ~/.dotfiles/config/.config/nvim/init.vim ]; then
         sed -E -i.bak \
             -e "s/colorscheme .*/colorscheme ${3}/" \
             -e "s/let g:airline_theme='.*'/let g:airline_theme='${2}'/" \
-            ~/.dotfiles/nvim/.config/nvim/init.vim && \
-            rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+            ~/.dotfiles/config/.config/nvim/init.vim && \
+            rm ~/.dotfiles/config/.config/nvim/init.vim.bak
     fi
     if [ -f ~/.dotfiles/tmux/.tmux.conf ]; then
         sed -E -i.bak \
@@ -42,6 +42,13 @@ _switch_color_scheme() {
             ~/.dotfiles/zsh/.zshrc && \
             rm ~/.dotfiles/zsh/.zshrc.bak
     fi
+    if [ -f ~/.dotfiles/alacritty/.alacritty.yml ]; then
+        sed -E -i.bak \
+            -e "s/\.alacritty-theme\/.*/\.alacritty-theme\/${1}\.yml/" \
+            ~/.dotfiles/alacritty/.alacritty.yml && \
+            rm ~/.dotfiles/alacritty/.alacritty.yml.bak
+    fi
+
 }
 
 if [ "$THEME" = "1" ]; then
@@ -62,38 +69,38 @@ elif [ "$THEME" = "8" ]; then
     _switch_color_scheme sonokai sonokai sonokai
     sed -E -i.bak \
         "s/let g:sonokai_style='.*'/let g:sonokai_style='default'/" \
-        ~/.dotfiles/nvim/.config/nvim/init.vim && \
-        rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+        ~/.dotfiles/config/.config/nvim/init.vim && \
+        rm ~/.dotfiles/config/.config/nvim/init.vim.bak
 elif [ "$THEME" = "9" ]; then
     _switch_color_scheme sonokai-shusia sonokai sonokai
     sed -E -i.bak \
         "s/let g:sonokai_style='.*'/let g:sonokai_style='shusia'/" \
-        ~/.dotfiles/nvim/.config/nvim/init.vim && \
-        rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+        ~/.dotfiles/config/.config/nvim/init.vim && \
+        rm ~/.dotfiles/config/.config/nvim/init.vim.bak
 elif [ "$THEME" = "10" ]; then
     _switch_color_scheme sonokai-andromeda sonokai sonokai
     sed -E -i.bak \
         "s/let g:sonokai_style='.*'/let g:sonokai_style='andromeda'/" \
-        ~/.dotfiles/nvim/.config/nvim/init.vim && \
-        rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+        ~/.dotfiles/config/.config/nvim/init.vim && \
+        rm ~/.dotfiles/config/.config/nvim/init.vim.bak
 elif [ "$THEME" = "11" ]; then
     _switch_color_scheme sonokai-atlantis sonokai sonokai
     sed -E -i.bak \
         "s/let g:sonokai_style='.*'/let g:sonokai_style='atlantis'/" \
-        ~/.dotfiles/nvim/.config/nvim/init.vim && \
-        rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+        ~/.dotfiles/config/.config/nvim/init.vim && \
+        rm ~/.dotfiles/config/.config/nvim/init.vim.bak
 elif [ "$THEME" = "12" ]; then
     _switch_color_scheme sonokai-maia sonokai sonokai
     sed -E -i.bak \
         "s/let g:sonokai_style='.*'/let g:sonokai_style='maia'/" \
-        ~/.dotfiles/nvim/.config/nvim/init.vim && \
-        rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+        ~/.dotfiles/config/.config/nvim/init.vim && \
+        rm ~/.dotfiles/config/.config/nvim/init.vim.bak
 elif [ "$THEME" = "13" ]; then
     _switch_color_scheme sonokai-espresso sonokai sonokai
     sed -E -i.bak \
         "s/let g:sonokai_style='.*'/let g:sonokai_style='espresso'/" \
-        ~/.dotfiles/nvim/.config/nvim/init.vim && \
-        rm ~/.dotfiles/nvim/.config/nvim/init.vim.bak
+        ~/.dotfiles/config/.config/nvim/init.vim && \
+        rm ~/.dotfiles/config/.config/nvim/init.vim.bak
 elif [ "$THEME" = "14" ]; then
     _switch_color_scheme soft-era soft-era soft-era
 fi

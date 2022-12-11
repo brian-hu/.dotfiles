@@ -1,8 +1,0 @@
-#!/usr/bin/env bash 
-alias python="python3"
-alias cbp="cat $DOTFILES/zsh/.config/.zsh_profile"
-alias ebp="$VIM $DOTFILES/.zsh_profile"
-alias etc="$VIM $DOTFILES/awesome-streamerrc/ThePrimeagen/.tmux.conf"
-alias bp="dotFileInstall && source ~/.zshrc"
-alias evrc="$VIM $DOTFILES/nvim/init.vim"
-alias dotFileInstall="$DOTFILES/install"

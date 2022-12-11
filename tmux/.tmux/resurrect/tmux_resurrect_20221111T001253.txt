@@ -1,0 +1,7 @@
+pane	0	1	0	:-	1	brian-pc	:/home/brian/yolov5	1	zsh	:
+pane	0	2	1	:*	1	brian-pc	:/home/brian/yolov5	1	zsh	:
+pane	0	3	0	:	1	brian-pc	:/home/brian/yolov5/utils	1	zsh	:
+window	0	1	:zsh	0	:-	d1dd,254x68,0,0,0	:
+window	0	2	:zsh	1	:*	d1de,254x68,0,0,1	:
+window	0	3	:zsh	0	:	d1df,254x68,0,0,2	:
+state	0	0

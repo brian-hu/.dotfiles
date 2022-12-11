@@ -1,0 +1,10 @@
+stack.yaml
+stack.yaml.lock
+xmonad-x86_64-linux
+xmonad.errors
+.ghc.environment.x86_64-linux-9.2.5
+build-x86_64-linux/
+xmonad/
+xmonad-contrib/
+xmonad-dbus/
+.stack-work/

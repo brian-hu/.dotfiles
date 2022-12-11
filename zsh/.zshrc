@@ -31,9 +31,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fzf
-[ -d "/usr/share/doc/fzf/examples" ] && source /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/completion.zsh
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # personal 
 VIM="nvim"
@@ -53,9 +51,9 @@ export SAVEHIST=100000
 setopt INC_APPEND_HISTORY_TIME
 
 # path updates
-export PATH=$PATH:~/.local/bin
-[ -f "$HOME/.local/share/solana/install/active_release/bin" ] && export PATH="$PATH:$HOME/.local/share/solana/install/active_release/bin" # solana
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+export PATH=$PATH:$HOME/.local/bin
+[ -f "$HOME/.local/share/solana/install/active_release/bin" ] && export PATH=$PATH:$HOME/.local/share/solana/install/active_release/bin # solana
+[ -d "$HOME/.ghcup/bin" ] && export PATH=$PATH:$HOME/.ghcup/bin
 
 # venv functions
 mkvenv() {
@@ -63,10 +61,15 @@ mkvenv() {
     then
         echo "Argument required"
     else
-        python3 -m venv $HOME/.python_envs/$1
+        if [ -z "$2" ]
+        then
+            python3 -m venv $HOME/.python_envs/$1
+        else
+            eval "$2 -m venv $HOME/.python_envs/$1"
+        fi
     fi
 }
-delvenv() {
+rmvenv() {
     if [ -z "$1" ]
     then
         echo "Argument required"
