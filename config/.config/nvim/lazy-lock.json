@@ -1,0 +1,20 @@
+{
+  "LuaSnip": { "branch": "master", "commit": "80a8528f084a97b624ae443a6f50ff8074ba486b" },
+  "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+  "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
+  "everforest": { "branch": "master", "commit": "72f101bd63228a1a45012325e39c5280ec22c828" },
+  "fzf": { "branch": "master", "commit": "1cfa3ee4c7c1741fca3cd26fb13451621d14bbf2" },
+  "fzf.vim": { "branch": "master", "commit": "1e054c1d075d87903647db9320116d360eb8b024" },
+  "gruvbox-material": { "branch": "master", "commit": "d13f4d4e75510e3d798f2ff7561d3c8991220375" },
+  "lazy.nvim": { "branch": "main", "commit": "16603c6917435d8446f7357cb61095138a417085" },
+  "nerdcommenter": { "branch": "master", "commit": "c52b6e731c2b558bc164419d4c369fcc45f0be51" },
+  "nerdtree": { "branch": "master", "commit": "4c588f182090e01edadeecb127a353cb08d1e39f" },
+  "nvim-cmp": { "branch": "main", "commit": "51260c02a8ffded8e16162dcf41a23ec90cfba62" },
+  "nvim-lspconfig": { "branch": "master", "commit": "d0467b9574b48429debf83f8248d8cee79562586" },
+  "nvim-treesitter": { "branch": "master", "commit": "efec7115d8175bdb6720eeb4e26196032cb52593" },
+  "sonokai": { "branch": "master", "commit": "bdce098fc9e7202d3c555e2dc98c755ca1c23835" },
+  "tmuxline.vim": { "branch": "master", "commit": "4119c553923212cc67f4e135e6f946dc3ec0a4d6" },
+  "toggleterm.nvim": { "branch": "main", "commit": "faee9d60428afc7857e0927fdc18daa6c409fa64" },
+  "vim-airline": { "branch": "master", "commit": "3b9e149e19ed58dee66e4842626751e329e1bd96" },
+  "vim-airline-themes": { "branch": "master", "commit": "dd81554c2231e438f6d0e8056ea38fd0e80ac02a" }
+}

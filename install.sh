@@ -13,12 +13,7 @@ if [[ "$EUID" -eq 0 ]]; then
 fi
 
 folders=(
-    "config"
     "tmux"
-    "zsh"
-    "xmonad"
-    "alacritty"
-    "xbindkeys"
 )
 
 for folder in "${folders[@]}"

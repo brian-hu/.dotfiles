@@ -1,5 +1,7 @@
 export DOTFILES=$HOME/.dotfiles
-export STOW_FOLDERS="nvim,zsh,ubuntu,tmux"
+export CURRENT_THEME="sonokai-shusia"
+
+source $HOME/.zshrc.bloomberg
 
 # ls colors
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
@@ -18,7 +20,7 @@ autoload -Uz _zinit
 # install theme
 PURE_POWER_MODE=modern
 zinit light romkatv/powerlevel10k
-zinit snippet ~/.zsh-theme/sonokai-andromeda.zsh
+zinit snippet ~/.zsh-theme/sonokai-shusia.zsh
 
 # install plugins
 zinit light zsh-users/zsh-autosuggestions
@@ -38,6 +40,7 @@ VIM="nvim"
 alias v=$VIM
 alias ls="ls --color=auto"
 alias cs="~/.dotfiles/scripts/colorscheme.sh"
+alias dc="docker compose"
 
 # wsl commands
 #alias xsvr='/mnt/c/Program\ Files/VcXsrv/vcxsrv.exe :0 -ac -multiwindow -clipboard -nowgl &> /dev/null &'
@@ -85,3 +88,12 @@ venv() {
         source $HOME/.python_envs/$1/bin/activate
     fi
 }
+
+# iterm2 shell integration
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=true
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if type it2setcolor &> /dev/null; then
+    it2setcolor preset "${CURRENT_THEME}"
+fi
+
+it2prof() { echo -e "\033]50;SetProfile=$1\a" }

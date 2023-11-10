@@ -1,16 +1,13 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/brian/.fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
+if [[ ! "$PATH" == */opt/homebrew/opt/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}/opt/homebrew/opt/fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
+source "/opt/homebrew/opt/fzf/shell/completion.zsh"
 
 # Key bindings
 # ------------
-source "$HOME/.fzf/shell/key-bindings.zsh"
-
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
