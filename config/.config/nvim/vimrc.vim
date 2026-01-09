@@ -99,3 +99,6 @@ nnoremap <C-g> :Rg<Cr>
 " Nerd Tree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
+
+" Turn off ctrl c sql
+let g:ftplugin_sql_omni_key = '<C-j>'

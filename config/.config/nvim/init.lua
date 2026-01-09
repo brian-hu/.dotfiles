@@ -1,10 +1,5 @@
 -- lazy.nvim setup.
 local plugins = {
-  { "akinsho/toggleterm.nvim", version = "*", opts = {
-      open_mapping = [[<C-q>]],
-      shade_terminals = true,
-      size = 17
-  }},
   "neovim/nvim-lspconfig",
   "sainnhe/sonokai",
   "sainnhe/everforest",
@@ -19,8 +14,15 @@ local plugins = {
   "edkolev/tmuxline.vim",
   'hrsh7th/nvim-cmp', -- Autocompletion plugin
   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-  'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-  'L3MON4D3/LuaSnip', -- Snippets plugin
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'hrsh7th/cmp-vsnip',
+  'hrsh7th/vim-vsnip',
+  'sindrets/diffview.nvim',
+  'lukas-reineke/lsp-format.nvim',
+  'AndrewRadev/splitjoin.vim',
+  'github/copilot.vim'
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -38,16 +40,30 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(plugins)
 
 -- Setup language servers.
+local lspformat = require("lsp-format")
+lspformat.setup {}
+
 local lspconfig = require('lspconfig')
-lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
+lspconfig.pyright.setup { on_attach = lspformat.on_attach }
+lspconfig.ts_ls.setup { on_attach = lspformat.on_attach }
 lspconfig.rust_analyzer.setup {
   -- Server-specific settings. See `:help lspconfig-setup`
   settings = {
     ['rust-analyzer'] = {},
   },
+  on_attach = lspformat.on_attach,
 }
-lspconfig.gopls.setup{}
+lspconfig.gopls.setup { on_attach = lspformat.on_attach }
+lspconfig.bashls.setup {}
+lspconfig.ruff.setup{
+  init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {},
+    }
+  }
+}
+lspconfig.clangd.setup{}
 
 
 -- Global mappings.
@@ -88,15 +104,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- luasnip setup
-local luasnip = require 'luasnip'
-
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
@@ -111,25 +124,23 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      elseif vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
       else
-        fallback()
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
     end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
+      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
       end
     end, { 'i', 's' }),
   }),
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = 'vsnip' },
   },
 }
 

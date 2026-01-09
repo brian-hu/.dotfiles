@@ -5,7 +5,7 @@ source $HOME/.zshrc.bloomberg
 
 # ls colors
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # install zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -26,8 +26,8 @@ zinit snippet ~/.zsh-theme/sonokai-shusia.zsh
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma-continuum/fast-syntax-highlighting
-    
-# nvm 
+
+# nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -35,12 +35,13 @@ export NVM_DIR="$HOME/.nvm"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# personal 
+# personal
 VIM="nvim"
 alias v=$VIM
 alias ls="ls --color=auto"
 alias cs="~/.dotfiles/scripts/colorscheme.sh"
 alias dc="docker compose"
+alias grb="export CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD) && git checkout main && git pull && git checkout $CURRENT_BRANCH && git rebase main -i && git push --force && unset CURRENT_BRANCH"
 
 # wsl commands
 #alias xsvr='/mnt/c/Program\ Files/VcXsrv/vcxsrv.exe :0 -ac -multiwindow -clipboard -nowgl &> /dev/null &'
@@ -54,7 +55,7 @@ export SAVEHIST=100000
 setopt INC_APPEND_HISTORY_TIME
 
 # path updates
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/Library/Python/3.9/bin/
 [ -f "$HOME/.local/share/solana/install/active_release/bin" ] && export PATH=$PATH:$HOME/.local/share/solana/install/active_release/bin # solana
 [ -d "$HOME/.ghcup/bin" ] && export PATH=$PATH:$HOME/.ghcup/bin
 
@@ -80,6 +81,9 @@ rmvenv() {
         rm -rf $HOME/.python_envs/$1
     fi
 }
+lsvenv() {
+    ls  $HOME/.python_envs
+}
 venv() {
     if [ -z "$1" ]
     then
@@ -89,11 +93,6 @@ venv() {
     fi
 }
 
-# iterm2 shell integration
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=true
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-if type it2setcolor &> /dev/null; then
-    it2setcolor preset "${CURRENT_THEME}"
-fi
+fortune | cowsay | lolcat
 
-it2prof() { echo -e "\033]50;SetProfile=$1\a" }
+source ~/.lcldevrc
